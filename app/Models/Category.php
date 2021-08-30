@@ -7,21 +7,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
- * Class EntityType
+ * Class Category
  * @package App\Models
- * @version July 3, 2021, 8:32 pm UTC
+ * @version July 29, 2021, 9:55 am UTC
  *
  * @property string $name
- * @property string $description
+ * @property string $slug
+ * @property  $description
+ * @property  $logo
  */
-class EntityType extends Model
+class Category extends Model
 {
     use SoftDeletes;
 
     use HasFactory;
 
-    public $table = 'entity_types';
-
+    public $table = 'categories';
+    
 
     protected $dates = ['deleted_at'];
 
@@ -29,7 +31,9 @@ class EntityType extends Model
 
     public $fillable = [
         'name',
-        'description'
+        'slug',
+        'description',
+        'logo'
     ];
 
     /**
@@ -40,7 +44,7 @@ class EntityType extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
-        'description' => 'string'
+        'slug' => 'string'
     ];
 
     /**
@@ -49,11 +53,8 @@ class EntityType extends Model
      * @var array
      */
     public static $rules = [
-
+        
     ];
 
-    public function entities(){
-        return $this->hasMany(Entity::class);
-    }
-
+    
 }

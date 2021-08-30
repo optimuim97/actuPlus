@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCommentTypeRequest;
 use App\Repositories\CommentTypeRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Flash;
 use Response;
 
@@ -55,6 +56,8 @@ class CommentTypeController extends AppBaseController
     public function store(CreateCommentTypeRequest $request)
     {
         $input = $request->all();
+
+        $input['slug'] = Str::slug($input['name']);
 
         $commentType = $this->commentTypeRepository->create($input);
 

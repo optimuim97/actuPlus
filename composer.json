@@ -16,6 +16,8 @@
         "infyomlabs/stisla-templates": "^1.0",
         "infyomlabs/swagger-generator": "dev-master",
         "laravel/framework": "^8.40",
+        "laravel/passport": "^10.1",
+        "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravelcollective/html": "^6.2",
         "yish/imgur": "^2.0"
@@ -29,6 +31,9 @@
         "phpunit/phpunit": "^9.3.3"
     },
     "autoload": {
+         "files": [
+            "app/helpers.php"
+        ],
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",

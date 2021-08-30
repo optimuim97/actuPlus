@@ -2,8 +2,8 @@
     <table class="table" id="entityTypes-table">
         <thead>
             <tr>
-                <th>Name</th>
-        <th>Description</th>
+                <th>Nom </th>
+                <th>Description</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>

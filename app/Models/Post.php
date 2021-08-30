@@ -65,7 +65,7 @@ class Post extends Model
         'publisher_id' => 'integer',
         'entity_id' => 'integer',
         'is_publish' => 'boolean',
-        'expiration_date' => 'boolean',
+        'expiration_date' => 'date',
         'medias' => 'string',
         'cover' => 'string',
         'is_draft' => 'boolean'

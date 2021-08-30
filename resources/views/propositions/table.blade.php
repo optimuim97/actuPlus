@@ -2,11 +2,11 @@
     <table class="table" id="propositions-table">
         <thead>
             <tr>
-                <th>Name</th>
-        <th>Description</th>
-        <th>Images</th>
-        <th>Video Url</th>
-        <th>Image Urls</th>
+                <th>Nom </th>
+                <th>Description</th>
+                <th>Images</th>
+                <th>Video Url</th>
+                <th>Image Url</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>

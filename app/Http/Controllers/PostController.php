@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use Imgur;
+use \Carbon\Carbon;
 
 class PostController extends AppBaseController
 {
@@ -92,7 +93,10 @@ class PostController extends AppBaseController
      */
     public function show($id)
     {
+
+        Carbon::setLocale('fr');
         $post = $this->postRepository->find($id);
+
 
         if (empty($post)) {
             Flash::error('Post not found');

@@ -23,6 +23,12 @@
     {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- description Field -->
+<div class="form-group col-sm-12 col-lg-12">
+    {!! Form::label('description', 'Description:') !!}
+</div>
+
+
 <!-- Publisher Name Field -->
 {{-- <div class="form-group col-sm-6">
     {!! Form::label('publisher_name', 'Publisher Name:') !!}
@@ -85,7 +91,25 @@
         {!! Form::hidden('is_publish', 0) !!}
         {!! Form::checkbox('is_publish', '1', null) !!}
     </label>
-</div
+</div>
+
+<!-- Is Draft Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('is_publish', ' Masqué au utilisateur ?:') !!}
+    <label class="checkbox-inline">
+        {!! Form::hidden('is_visible_by_user', 0) !!}
+        {!! Form::checkbox('is_visible_by_user', '1', false) !!}
+    </label>
+</div>
+
+<!-- Is Draft Field -->
+{{-- <div class="form-group col-sm-6">
+    {!! Form::label('is_publish', 'Publié ?:') !!}
+    <label class="checkbox-inline">
+        {!! Form::hidden('is_visible_by_agent', 0) !!}
+        {!! Form::checkbox('is_visible_by_agent', '1', null) !!}
+    </label>
+</div> --}}
 
 
 <!-- Submit Field -->

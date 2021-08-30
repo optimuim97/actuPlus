@@ -4,9 +4,10 @@
     </a>
 </li>
 
-
 <li class="side-menus {{ Request::is('posts*') ? 'active' : '' }}">
-    <a class="nav-link" href="{{ route('posts.index') }}"><i class="fas fa-building"></i><span>Publications</span></a>
+    <a class="nav-link" href="{{ route('posts.index') }}">
+        <i class="fas fa-building"></i><span>Publications</span>
+    </a>
 </li>
 
 <li class="side-menus {{ Request::is('media*') ? 'active' : '' }}">
@@ -25,10 +26,6 @@
     <a class="nav-link" href="{{ route('commentTypes.index') }}"><i class="fas fa-building"></i><span>Type de Commentaire</span></a>
 </li>
 
-<li class="side-menus {{ Request::is('likes*') ? 'active' : '' }}">
-    <a class="nav-link" href="{{ route('likes.index') }}"><i class="fas fa-building"></i><span>J'aime</span></a>
-</li>
-
 <li class="side-menus {{ Request::is('entityTypes*') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('entityTypes.index') }}"><i class="fas fa-building"></i><span>Type d'entités</span></a>
 </li>
@@ -43,5 +40,8 @@
 
 <li class="side-menus {{ Request::is('products*') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('products.index') }}"><i class="fas fa-building"></i><span>Produits</span></a>
+</li>
+<li class="side-menus {{ Request::is('categories*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('categories.index') }}"><i class="fas fa-building"></i><span>Categories</span></a>
 </li>
 

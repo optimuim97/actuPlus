@@ -2,10 +2,10 @@
     <table class="table" id="criticals-table">
         <thead>
             <tr>
-                <th>Post Id</th>
-        <th>User Id</th>
-        <th>Content</th>
-        <th>Title</th>
+                <th>#ID de Publication</th>
+                <th>Utilisateur</th>
+                <th>Contenu</th>
+                <th>Titre</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>

@@ -15,7 +15,7 @@
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
     <script src="https://cdn.tiny.cloud/1/bwr3tnqfsrzw5qmboibtqdj0a3nn7gczh7w33hdpbtzg2uy7/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
-@yield('page_css')  
+@yield('page_css')
 <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('web/css/components.css')}}">
@@ -84,5 +84,13 @@
             }
         };
     }(jQuery));
+
+
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+        toolbar_mode: 'floating',
+    });
+
 </script>
 </html>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,20 +15,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', [AuthController::class, 'register']);
+
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('user', [AuthController::class, 'user']);
+    Route::post('logout', [AuthController::class, 'logout']);
 });
-
-
-
 
 
 
 Route::resource('posts', App\Http\Controllers\API\PostAPIController::class);
 
 Route::resource('media', App\Http\Controllers\API\MediaAPIController::class);
-
-
 
 Route::resource('criticals', App\Http\Controllers\API\CriticalAPIController::class);
 
@@ -44,3 +50,5 @@ Route::resource('entities', App\Http\Controllers\API\EntityAPIController::class)
 Route::resource('agents', App\Http\Controllers\API\AgentAPIController::class);
 
 Route::resource('products', App\Http\Controllers\API\ProductAPIController::class);
+
+Route::resource('categories', App\Http\Controllers\API\CategoryAPIController::class);

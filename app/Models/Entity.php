@@ -25,7 +25,7 @@ class Entity extends Model
     use HasFactory;
 
     public $table = 'entities';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -60,8 +60,13 @@ class Entity extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+
+    public function entity_type(){
+        return $this->belongsTo(EntityType::class);
+    }
+
+
 }

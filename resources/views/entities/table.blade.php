@@ -18,7 +18,7 @@
                     <td>{{ $entity->description }}</td>
                     <td> <img src="{{ $entity->logo }}" alt="{{ $entity->logo }}" srcset="" width="100" height="100"></td>
                     <td> <img src="{{ $entity->photo_url }}" alt="{{ $entity->photo_url }}" srcset="" width="100" height="100"></td>
-                    <td>{{ $entity->description }}</td>
+                    <td>{!! $entity->description !!}</td>
                     <td>{{ $entity->entity_type_idl }}</td>
                     <td class=" text-center">
                         {!! Form::open(['route' => ['entities.destroy', $entity->id], 'method' => 'delete']) !!}

@@ -2,9 +2,9 @@
     <table class="table" id="commentTypes-table">
         <thead>
             <tr>
-                <th>Name</th>
-        <th>Description</th>
-        <th>Slug</th>
+                <th>Nom </th>
+                <th>Description</th>
+                {{-- <th>Slug</th> --}}
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -13,7 +13,7 @@
             <tr>
                        <td>{{ $commentType->name }}</td>
             <td>{{ $commentType->description }}</td>
-            <td>{{ $commentType->slug }}</td>
+            {{-- <td>{{ $commentType->slug }}</td> --}}
                        <td class=" text-center">
                            {!! Form::open(['route' => ['commentTypes.destroy', $commentType->id], 'method' => 'delete']) !!}
                            <div class='btn-group'>
