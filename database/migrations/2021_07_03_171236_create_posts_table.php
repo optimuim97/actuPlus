@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -16,6 +17,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
+            $table->bigInteger('user_id')->nullable();
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('publisher_name')->nullable();
