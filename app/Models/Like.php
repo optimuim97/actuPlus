@@ -50,5 +50,10 @@ class Like extends Model
         
     ];
 
+
+    public function post()
+    {
+        $this->belongsTo(Post::class);
+    } 
     
 }

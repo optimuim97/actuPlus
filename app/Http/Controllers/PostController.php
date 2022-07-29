@@ -74,6 +74,7 @@ class PostController extends AppBaseController
         } else {
             $productImageLink = '';
         }
+        
         $input["cover"] = $productImageLink;
 
         $post = $this->postRepository->create($input);

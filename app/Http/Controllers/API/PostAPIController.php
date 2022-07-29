@@ -9,6 +9,7 @@ use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Imgur;
 
 /**
  * Class PostController
@@ -54,6 +55,21 @@ class PostAPIController extends AppBaseController
     public function store(CreatePostAPIRequest $request)
     {
         $input = $request->all();
+
+        if ($request->file('cover')) {
+            $image = $request->file('cover');
+            $pictures = [];
+            if ($image != null) {
+                // dd($image);
+                $productImage = Imgur::upload($image);
+                $productImageLink = $productImage->link();
+            }
+
+        } else {
+            $productImageLink = '';
+        }
+
+        $input["cover"] = $productImageLink;
 
         $post = $this->postRepository->create($input);
 
@@ -127,5 +143,29 @@ class PostAPIController extends AppBaseController
         $post->delete();
 
         return $this->sendSuccess('Post deleted successfully');
+    }
+
+    public function getPostByEntity($id){
+
+        $post = Post::where('entity_id', $id)->get();
+
+        if(!empty($post)){
+            return response(
+                [
+                    "data"=> $post,
+                    "message" => "list post"
+                ],
+                200
+            );
+        }else{
+            return response(
+                [
+                    "data"=> $post,
+                    "message" => "bad request"
+                ],
+                400
+            );
+        }
+
     }
 }

@@ -22,8 +22,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
-
-
 Route::resource('posts', App\Http\Controllers\PostController::class);
 
 Route::resource('media', App\Http\Controllers\MediaController::class);
