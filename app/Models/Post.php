@@ -35,7 +35,7 @@ class Post extends Model
 
     protected $dates = ['deleted_at'];
 
-
+    protected $appends = ['likes_count', 'comments_count'];
 
     public $fillable = [
         'title',
@@ -80,6 +80,14 @@ class Post extends Model
 
     ];
 
+
+    public function getCommentsCountAttribute(){
+        return $this->comments->count();
+    }
+
+    public function getLikesCountAttribute(){
+        return $this->likes->count();
+    }
 
     public function likes()
     {
