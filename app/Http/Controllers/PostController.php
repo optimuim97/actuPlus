@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Repositories\PostRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Models\Entity;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -178,4 +179,5 @@ class PostController extends AppBaseController
 
         return redirect(route('posts.index'));
     }
+
 }

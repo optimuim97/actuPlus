@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('/posts/{id}', [PostAPIController::class, 'show']); // get single post
     Route::put('/posts/{id}', [PostAPIController::class, 'update']); // update post
     Route::delete('/posts/{id}', [PostAPIController::class, 'destroy']); // delete post
+    Route::post('/posts-limited', [PostAPIController::class, 'limited']); // delete post
 
     // Comment
     Route::get('/posts/{id}/comments', [CommentAPIController::class, 'index']); // all comments of a post

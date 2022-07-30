@@ -173,4 +173,12 @@ class PostAPIController extends AppBaseController
         }
 
     }
+
+
+
+    public function limited(Request $request){
+        $post = Post::latest()->take($request->limit)->get();
+
+        return $this->sendResponse($post->toArray(), 'latest post');
+    }
 }
