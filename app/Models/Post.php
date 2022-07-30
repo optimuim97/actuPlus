@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Resources\LikeResource;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -35,7 +36,10 @@ class Post extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $appends = ['likes_count', 'comments_count'];
+    protected $appends = 
+    [
+        'likes_count', 'comments_count', 'comments', 'likes'
+    ];
 
     public $fillable = [
         'title',
@@ -87,6 +91,17 @@ class Post extends Model
 
     public function getLikesCountAttribute(){
         return $this->likes->count();
+    }
+
+    public function getCommentsAttribute(){
+        return $this->comments();
+    }
+
+    public function getLikesAttribute(){
+
+        $likes = Like::where("post_id", $this->id)->get();
+
+        return  LikeResource::collection($likes);
     }
 
     public function likes()

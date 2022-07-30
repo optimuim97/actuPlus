@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Auth;
 use Response;
 use Imgur;
 
@@ -70,6 +71,10 @@ class PostAPIController extends AppBaseController
         }
 
         $input["cover"] = $productImageLink;
+
+        $input["publisher_id"] = auth('sanctum')->user()->id;
+        $input["publisher_name"] = auth('sanctum')->user()->name;
+        
 
         $post = $this->postRepository->create($input);
 

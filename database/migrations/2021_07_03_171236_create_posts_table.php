@@ -22,9 +22,9 @@ class CreatePostsTable extends Migration
             $table->string('description')->nullable();
             $table->string('publisher_name')->nullable();
             $table->bigInteger('publisher_id')->nullable();
-            $table->boolean('is_publish')->nullable();
-            $table->boolean('is_visible_by_user')->nullable();
-            $table->boolean('is_visible_by_agent')->nullable();
+            $table->boolean('is_publish')->default(1);
+            $table->boolean('is_visible_by_user')->default(1);
+            $table->boolean('is_visible_by_agent')->default(1);
             $table->date('expiration_date')->nullable();
             $table->text('medias')->nullable();
             $table->text('cover')->nullable();
