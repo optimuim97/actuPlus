@@ -24,12 +24,12 @@ class AuthController extends Controller
         ]);
 
 
-        return response(
-            [
-                'user' => $user,
-                'token' => $user->createToken('secret')->plainTextToken
-            ]
-        );
+        return response()->json([
+                'status'=> true,
+                'data' => $user,
+                'token' => $user->createToken('secret')->plainTextToken,
+                'status_code' => 200
+        ]);
     } //
 
     public function login(Request $request)
@@ -55,7 +55,16 @@ class AuthController extends Controller
                 'password' => $attrs['password']
             ]
         )) {
-            return response(["user" => auth()->user(), "token" => auth()->user()->createToken('secret')->plainTextToken, 200]);
+            
+            $user=auth()->user();
+
+            return response()->json([
+                    'status'=> true,
+                    'data' => $user,
+                    'token' => $user->createToken('secret')->plainTextToken,
+                    'status_code' => 200
+                ]
+            );
         }
     }
 
@@ -85,9 +94,9 @@ class AuthController extends Controller
     public function update(Request $request){
         $user = auth('sanctum')->user();
 
-        if(!empty($user)){
+        if(empty($user)){
             return response()->json([
-                'status'=> true,
+                'status'=> false,
                 'message'=>  'une erreur est survenue',
                 404
             ]);
@@ -96,7 +105,8 @@ class AuthController extends Controller
         $user->update($request->all());
 
         return response()->json([
-            "user"=> $user,
+            "status"=>true,
+            "data"=> $user,
             200
         ]);
     }
