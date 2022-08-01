@@ -1,13 +1,27 @@
 @extends('layouts.auth_app')
 @section('title')
-    Admin Login
+    Connexion
 @endsection
 @section('content')
     <div class="card card-primary">
         <div class="card-header"><h4>Admin Login</h4></div>
 
         <div class="card-body">
-            <form method="POST" action="{{ route('login') }}">
+            <form 
+                method="POST" 
+
+                @if (isset($role))
+
+                    @if ($role == "admin")
+                        action="{{ route('login') }}"
+                    @else
+                        action="{{ url('login-entity') }}"
+                    @endif
+
+                @else
+                        action="{{ route('login') }}"
+                @endif
+            >
                 @csrf
                 @if ($errors->any())
                     <div class="alert alert-danger p-0">
@@ -18,6 +32,7 @@
                         </ul>
                     </div>
                 @endif
+
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input aria-describedby="emailHelpBlock" id="email" type="email"

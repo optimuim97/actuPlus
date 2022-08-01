@@ -79,7 +79,6 @@ class PostController extends AppBaseController
         $input["cover"] = $productImageLink;
 
         $post = $this->postRepository->create($input);
-        // dd($post);
 
         Flash::success('Post saved successfully.');
 

@@ -70,6 +70,7 @@ class AuthController extends Controller
             ]
         );
     }
+    
     public function user()
     {
 
@@ -79,5 +80,24 @@ class AuthController extends Controller
                 200
             ]
         );
+    }
+
+    public function update(Request $request){
+        $user = auth('sanctum')->user();
+
+        if(!empty($user)){
+            return response()->json([
+                'status'=> true,
+                'message'=>  'une erreur est survenue',
+                404
+            ]);
+        }
+
+        $user->update($request->all());
+
+        return response()->json([
+            "user"=> $user,
+            200
+        ]);
     }
 }

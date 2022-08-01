@@ -33,9 +33,16 @@
             @include('layouts.header')
 
         </nav>
+
+      
         <div class="main-sidebar main-sidebar-postion">
-            @include('layouts.sidebar')
-        </div>
+                @if (Request::is('accueil'))     
+                    
+                @else
+                    @include('layouts.sidebar')
+                @endif
+            </div>
+        
         <!-- Main Content -->
         <div class="main-content">
             @yield('content')

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -35,9 +36,10 @@ class Entity extends Model
         'name',
         'description',
         'logo',
+        'email',
+        'password',
         'photo_url',
-        'photo_url',
-        'entity_type_idl'
+        'entity_type_id'
     ];
 
     /**
@@ -48,10 +50,11 @@ class Entity extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
+        'email' => 'string',
+        'password' => 'string',
         'logo' => 'string',
         'photo_url' => 'string',
-        'photo_url' => 'string',
-        'entity_type_idl' => 'string'
+        'entity_type_id' => 'string'
     ];
 
     /**

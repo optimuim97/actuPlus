@@ -77,7 +77,6 @@ class EntityController extends AppBaseController
             $image = $request->file('logo');
             $pictures = [];
             if ($image != null) {
-                // dd($image);
                 $productImage = Imgur::upload($image);
                 $productImageLink = $productImage->link();
             }
@@ -88,8 +87,6 @@ class EntityController extends AppBaseController
         $input["logo"] = $productImageLink;
 
         $entity = $this->entityRepository->create($input);
-
-        // dd($entity);
 
         Flash::success('Entity saved successfully.');
 
