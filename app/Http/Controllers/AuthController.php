@@ -106,26 +106,27 @@ class AuthController extends Controller
             ]);
         }
 
+        
         if ($request->file('image')) {
             $image = $request->file('image');
-            
             if ($image != null) {
+
                 $productImage = Imgur::upload($image);
-                $user_image_link = $productImage->link();
+                $productImageLink = $productImage->link();
             }
 
         } else {
-            $user_image_link = '';
+            $productImageLink = '';
         }
 
-        $input['image'] = $user_image_link;
-
+        $input["image"] = $productImageLink;
 
         $user->update($input);
 
         return response()->json([
             "status" => true,
             "data" => $user,
+            "message"=>"Mise à jour éffectué", 
             "status_code"=> 200
         ]);
     }

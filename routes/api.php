@@ -30,7 +30,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Protected Routes
 Route::group(['middleware' => ['auth:sanctum']], function() {
     // User
-    Route::put('/user', [AuthController::class, 'update']);
+    Route::post('/user-update', [AuthController::class, 'update']);
     Route::post('/logout', [AuthController::class, 'logout']);
 
     // Post

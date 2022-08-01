@@ -6,6 +6,7 @@ use App\Http\Requests\CreateEntityRequest;
 use App\Http\Requests\UpdateEntityRequest;
 use App\Repositories\EntityRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -86,7 +87,18 @@ class EntityController extends AppBaseController
         }
         $input["logo"] = $productImageLink;
 
+
+        
         $entity = $this->entityRepository->create($input);
+        
+        //TODO create user
+        $user  = User::create([
+            "email"=> $input['email'],
+            "name"=> $input['name'],
+            "password"=> bcrypt($input['password']),
+            "user_type"=> 'entity',
+            'entity_id'=> $entity->id
+        ]);
 
         Flash::success('Entity saved successfully.');
 
