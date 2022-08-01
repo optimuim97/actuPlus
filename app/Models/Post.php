@@ -38,7 +38,7 @@ class Post extends Model
 
     protected $appends = 
     [
-        'likes_count', 'comments_count', 'comments', 'likes'
+        'likes_count', 'comments_count', 'comments', 'likes', 'user_image'
     ];
 
     public $fillable = [
@@ -102,6 +102,16 @@ class Post extends Model
         $likes = Like::where("post_id", $this->id)->get();
 
         return  LikeResource::collection($likes);
+    }
+
+    public function getUserImageAttribute(){
+        $user = User::where('id', $this->user_id)->first();
+
+        if(empty($user)){
+            return null;
+        }
+
+        return $user->image;
     }
 
     public function likes()

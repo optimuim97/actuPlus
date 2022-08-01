@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Imgur;
 
 class AuthController extends Controller
 {
@@ -92,22 +93,40 @@ class AuthController extends Controller
     }
 
     public function update(Request $request){
+        $input = $request->all();
+
         $user = auth('sanctum')->user();
 
         if(empty($user)){
             return response()->json([
-                'status'=> false,
-                'message'=>  'une erreur est survenue',
-                404
+                'status' => false,
+                'data' => null,
+                'message' => 'Une erreur est survenue',
+                "status_code" => 404
             ]);
         }
 
-        $user->update($request->all());
+        if ($request->file('image')) {
+            $image = $request->file('image');
+            
+            if ($image != null) {
+                $productImage = Imgur::upload($image);
+                $user_image_link = $productImage->link();
+            }
+
+        } else {
+            $user_image_link = '';
+        }
+
+        $input['image'] = $user_image_link;
+
+
+        $user->update($input);
 
         return response()->json([
-            "status"=>true,
-            "data"=> $user,
-            200
+            "status" => true,
+            "data" => $user,
+            "status_code"=> 200
         ]);
     }
 }

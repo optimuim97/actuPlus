@@ -61,7 +61,7 @@ class PostAPIController extends AppBaseController
             $image = $request->file('cover');
             $pictures = [];
             if ($image != null) {
-                // dd($image);
+
                 $productImage = Imgur::upload($image);
                 $productImageLink = $productImage->link();
             }
