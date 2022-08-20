@@ -6,6 +6,9 @@ use App\Http\Requests\CreateEntityRequest;
 use App\Http\Requests\UpdateEntityRequest;
 use App\Repositories\EntityRepository;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\EntityCreated;
+use App\Models\EntityType;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Flash;
@@ -29,7 +32,7 @@ class EntityController extends AppBaseController
      *
      * @return Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $entities = $this->entityRepository->all();
 
@@ -58,7 +61,6 @@ class EntityController extends AppBaseController
     {
         $input = $request->all();
 
-
         if ($request->file('photo_url')) {
             $image = $request->file('photo_url');
             $pictures = [];
@@ -67,7 +69,6 @@ class EntityController extends AppBaseController
                 $productImage = Imgur::upload($image);
                 $productImageLink = $productImage->link();
             }
-
         } else {
             $productImageLink = '';
         }
@@ -81,26 +82,29 @@ class EntityController extends AppBaseController
                 $productImage = Imgur::upload($image);
                 $productImageLink = $productImage->link();
             }
-
         } else {
             $productImageLink = '';
         }
         $input["logo"] = $productImageLink;
 
-
-        
         $entity = $this->entityRepository->create($input);
-        
+
         //TODO create user
+        $password = $input['password'];
+        $email = $input['email'];
+
         $user  = User::create([
-            "email"=> $input['email'],
-            "name"=> $input['name'],
-            "password"=> bcrypt($input['password']),
-            "user_type"=> 'entity',
-            'entity_id'=> $entity->id
+            "email" => $email,
+            "name" => $input['name'],
+            "password" => bcrypt($password),
+            "user_type" => 'entity',
+            'entity_id' => $entity->id
         ]);
 
-        Flash::success('Entity saved successfully.');
+        Mail::to($email)->send(new EntityCreated($email, $password));
+
+        //TODO Send mail to created user
+        Flash::success('Entité enregistré avec succès !');
 
         return redirect(route('entities.index'));
     }
@@ -195,5 +199,4 @@ class EntityController extends AppBaseController
 
         return redirect(route('entities.index'));
     }
-
 }

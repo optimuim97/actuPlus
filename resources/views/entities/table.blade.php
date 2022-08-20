@@ -2,12 +2,11 @@
     <table class="table" id="entities-table">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Description</th>
                 <th>Logo</th>
-                <th>Photo Url</th>
-                <th>Photo Url</th>
-                <th>Entity Type Idl</th>
+                <th>Photo</th>
+                <th>Type d'entité</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
@@ -15,11 +14,10 @@
             @foreach($entities as $entity)
                 <tr>
                     <td>{{ $entity->name }}</td>
-                    <td>{{ $entity->description }}</td>
+                    <td>{!! $entity->description !!}</td>
                     <td> <img src="{{ $entity->logo }}" alt="{{ $entity->logo }}" srcset="" width="100" height="100"></td>
                     <td> <img src="{{ $entity->photo_url }}" alt="{{ $entity->photo_url }}" srcset="" width="100" height="100"></td>
-                    <td>{!! $entity->description !!}</td>
-                    <td>{{ $entity->entity_type_idl }}</td>
+                    <td>{{ $entity->entity_type_id }}</td>
                     <td class=" text-center">
                         {!! Form::open(['route' => ['entities.destroy', $entity->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>

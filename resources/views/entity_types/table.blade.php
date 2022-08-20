@@ -11,7 +11,7 @@
         @foreach($entityTypes as $entityType)
             <tr>
                        <td>{{ $entityType->name }}</td>
-            <td>{{ $entityType->description }}</td>
+            <td>{!! $entityType->description !!}</td>
                        <td class=" text-center">
                            {!! Form::open(['route' => ['entityTypes.destroy', $entityType->id], 'method' => 'delete']) !!}
                            <div class='btn-group'>

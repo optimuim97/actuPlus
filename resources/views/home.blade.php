@@ -69,6 +69,8 @@
     </style>
 
 
+    {{-- @dd(Auth::user()) --}}
+
     <section class="section">
         <div class="section-header">
             <h3 class="page__heading">Tableau de Bord</h3>

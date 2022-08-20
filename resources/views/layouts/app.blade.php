@@ -74,9 +74,6 @@
 @yield('scripts')
 @stack('tinymce')
 
-
-
-
 <script>
     let loggedInUser =@json(\Illuminate\Support\Facades\Auth::user());
     let loginUrl = '{{ route('login') }}';

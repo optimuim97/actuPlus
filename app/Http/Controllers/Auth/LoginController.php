@@ -44,28 +44,27 @@ class LoginController extends Controller
     }
 
 
-    public function loginEntity(Request $request){
-        $email= $request->email;
-        $password= $request->password;
+    public function loginEntity(Request $request)
+    {
+        $email = $request->email;
+        $password = $request->password;
 
         $entity = Entity::whereEmail($email)->first();
-        
+
         $passwordStored = $entity != null ? $entity->password : '';
 
-        if(!empty($entity)){
+        if (!empty($entity)) {
             Auth::loginUsingId($entity->id);
-        }else{
+        } else {
             dd('Is empty');
         }
-        
-        if(Hash::check($password, $passwordStored)){
+
+        if (Hash::check($password, $passwordStored)) {
             Flash::success('Bien éffectué !');
             return redirect('home');
-        }else{
+        } else {
             Flash::error('Les identifiants ne correspondent pas a nos enregistrements.');
             return back();
         }
-
     }
-
 }
