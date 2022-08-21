@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title')
-    Create Entity Type 
+     Type Entite 
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading m-0">New Entity Type</h3>
+            <h3 class="page__heading m-0">Type Entite </h3>
             <div class="filter-container section-header-breadcrumb row justify-content-md-end">
                 <a href="{{ route('entityTypes.index') }}" class="btn btn-primary">Back</a>
             </div>

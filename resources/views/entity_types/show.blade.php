@@ -1,14 +1,14 @@
 @extends('layouts.app')
 @section('title')
-    Entity Type Details 
+    Details 
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-        <h1>Entity Type Details</h1>
+        <h1> Type entite Details</h1>
         <div class="section-header-breadcrumb">
             <a href="{{ route('entityTypes.index') }}"
-                 class="btn btn-primary form-btn float-right">Back</a>
+                 class="btn btn-primary form-btn float-right">Retour</a>
         </div>
       </div>
    @include('stisla-templates::common.errors')
