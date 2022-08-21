@@ -42,7 +42,7 @@ class PostAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse($posts->toArray(), 'Posts retrieved successfully');
+        return $this->sendResponse($posts, 'Posts retrieved successfully');
     }
 
     /**
