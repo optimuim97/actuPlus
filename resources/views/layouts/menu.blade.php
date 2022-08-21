@@ -31,15 +31,19 @@
 </li>
 
 @if (Auth::user()->user_type != "entity")    
+
     <li class="side-menus {{ Request::is('entities*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('entities.index') }}"><i class="fas fa-building"></i><span>Entités</span></a>
     </li>
+    
 @endif
 
 @if (Auth::user()->user_type != "entity")    
+
     <li class="side-menus {{ Request::is('agents*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('agents.index') }}"><i class="fas fa-building"></i><span>Agents</span></a>
     </li>
+    
 @endif
 
 <li class="side-menus {{ Request::is('products*') ? 'active' : '' }}">

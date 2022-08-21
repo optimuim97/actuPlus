@@ -5,7 +5,7 @@
                 <th>Nom</th>
                 {{-- <th>Slug</th> --}}
                 <th>Description</th>
-                <th>Logo</th>
+                <th>Image</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>

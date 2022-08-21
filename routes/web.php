@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/home', 301);
+Route::redirect('/', '/accueil', 301);
 Route::get('accueil', function(){
     return view('welcome');
 });
