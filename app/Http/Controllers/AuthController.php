@@ -21,15 +21,32 @@ class AuthController extends Controller
             "password" => 'required|min:6|confirmed',
         ]);
 
-        $user = User::create([
+        $user_ = User::create([
             'name' => $attrs["name"],
             'email' => $attrs["email"],
             'password' => bcrypt($attrs["password"]),
         ]);
 
+        $user = [$user_];
+        $token = ($user)[0]->createToken('secret')->plainTextToken;
+        $data = [];
+
+        foreach ($user as $user) {
+            $data = [
+                'id' => $user->id,
+                'name' => $user->name,
+                "email"=> $user->email,
+                "image"=> $user->image,
+                "email_verified_at"=> null,
+                'token'=> $token,
+                "created_at"=> $user->created_at,
+                "updated_at"=>$user->updated_at
+            ];
+        }
+
         return response()->json([
             'status'=> true,
-            'data' => $user,
+            'data' => $data,
             'token' => $user->createToken('secret')->plainTextToken,
             'status_code' => 200
         ]);
@@ -58,11 +75,26 @@ class AuthController extends Controller
                 'password' => $attrs['password']
             ]
         )) {
-            $user = auth()->user();
+            $user = [auth()->user()];
+            $token = ($user)[0]->createToken('secret')->plainTextToken;
+            $data = [];
+
+            foreach ($user as $user) {
+                $data = [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    "email"=> $user->email,
+                    "image"=> $user->image,
+                    "email_verified_at"=> null,
+                    'token'=> $token,
+                    "created_at"=> $user->created_at,
+                    "updated_at"=>$user->updated_at
+                ];
+            }
 
             return response()->json([
                     'status'=> true,
-                    'data' =>$user,
+                    'data' =>$data,
                     'token' => $user->createToken('secret')->plainTextToken,
                     'status_code' => 200
                 ]
@@ -84,7 +116,6 @@ class AuthController extends Controller
     
     public function user()
     {
-
         return response(
             [
                 "user" => auth()->user(),
@@ -106,7 +137,6 @@ class AuthController extends Controller
                 "status_code" => 404
             ]);
         }
-
         
         if ($request->file('image')) {
             $image = $request->file('image');
