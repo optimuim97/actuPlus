@@ -1,18 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Resources\DataResponse;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Imgur;
-use phpDocumentor\Reflection\Types\Resource_;
-
 class AuthController extends Controller
 {
-    //
     public function register(Request $request)
     {
         $attrs = $request->validate([
