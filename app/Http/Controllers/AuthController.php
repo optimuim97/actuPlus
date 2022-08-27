@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DataResponse;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Imgur;
+use phpDocumentor\Reflection\Types\Resource_;
 
 class AuthController extends Controller
 {
@@ -24,12 +27,11 @@ class AuthController extends Controller
             'password' => bcrypt($attrs["password"]),
         ]);
 
-
         return response()->json([
-                'status'=> true,
-                'data' => $user,
-                'token' => $user->createToken('secret')->plainTextToken,
-                'status_code' => 200
+            'status'=> true,
+            'data' => $user,
+            'token' => $user->createToken('secret')->plainTextToken,
+            'status_code' => 200
         ]);
     } //
 
@@ -56,12 +58,11 @@ class AuthController extends Controller
                 'password' => $attrs['password']
             ]
         )) {
-            
-            $user=auth()->user();
+            $user = auth()->user();
 
             return response()->json([
                     'status'=> true,
-                    'data' => $user,
+                    'data' =>$user,
                     'token' => $user->createToken('secret')->plainTextToken,
                     'status_code' => 200
                 ]

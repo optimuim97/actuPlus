@@ -45,8 +45,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('entityTypes', App\Http\Controllers\EntityTypeController::class);
     
     Route::resource('entities', App\Http\Controllers\EntityController::class);
-    
-    
+
     Route::resource('agents', App\Http\Controllers\AgentController::class);
     
     Route::resource('products', App\Http\Controllers\ProductController::class);

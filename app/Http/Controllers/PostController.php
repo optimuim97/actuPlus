@@ -73,10 +73,11 @@ class PostController extends AppBaseController
             }
 
         } else {
-            $productImageLink = '';
+            $productImageLink = 'https://i.imgur.com/9DbfmJM.jpg';
         }
         
         $input["cover"] = $productImageLink;
+        $input["user_id"] = auth()->user()->id;
 
         $post = $this->postRepository->create($input);
 

@@ -56,7 +56,8 @@ class LoginController extends Controller
         if (!empty($entity)) {
             Auth::loginUsingId($entity->id);
         } else {
-            dd('Is empty');
+            Flash::success('Une erreur est survenue');
+            return back();
         }
 
         if (Hash::check($password, $passwordStored)) {
