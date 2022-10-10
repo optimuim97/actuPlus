@@ -13,7 +13,7 @@ class AuthController extends Controller
         $attrs = $request->validate([
             "name" => 'required|string',
             "email" => 'required|email|unique:users',
-            "password" => 'required|min:6|confirmed',
+            "password" => 'required|min:7|confirmed',
         ]);
 
         $user_ = User::create([
