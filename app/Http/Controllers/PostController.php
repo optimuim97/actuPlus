@@ -13,6 +13,7 @@ use Flash;
 use Response;
 use Imgur;
 use \Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends AppBaseController
 {
@@ -27,15 +28,18 @@ class PostController extends AppBaseController
     /**
      * Display a listing of the Post.
      *
-     * @param Request $request
-     *
      * @return Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $posts = $this->postRepository->all();
-
-
+        if(Auth::user() != null & Auth::user()->user_type == 'entity'){
+            $user = Auth::user();
+            $entity = Entity::where('email', $user->email)->first();
+            $posts = Post::where('entity_id', $entity->id)->orderBy('created_at', 'DESC')->get();
+        }else{
+            $posts = Post::orderBy('created_at', 'DESC')->get();
+        }
+    
         return view('posts.index')
             ->with(['posts'=>$posts]);
     }
@@ -47,6 +51,7 @@ class PostController extends AppBaseController
      */
     public function create()
     {
+
         $entities = Entity::all();
 
         return view('posts.create', compact('entities'));
@@ -126,7 +131,7 @@ class PostController extends AppBaseController
             return redirect(route('posts.index'));
         }
 
-        return view('posts.edit')->with('post', $post);
+        return view('posts.edit')->with(['post'=>$post, 'entities'=> Entity::all()]);
     }
 
     /**

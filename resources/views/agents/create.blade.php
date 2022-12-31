@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('title')
-    Create Agent 
+    Creation | Agent 
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading m-0">New Agent</h3>
+            <h3 class="page__heading m-0">Creation | Agent </h3>
             <div class="filter-container section-header-breadcrumb row justify-content-md-end">
-                <a href="{{ route('agents.index') }}" class="btn btn-primary">Back</a>
+                <a href="{{ route('agents.index') }}" class="btn btn-primary">Retour</a>
             </div>
         </div>
         <div class="content">

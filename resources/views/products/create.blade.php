@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title')
-    Create Product 
+    Creation | Products
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h3 class="page__heading m-0">New Product</h3>
+            <h3 class="page__heading m-0">Creation | Products</h3>
             <div class="filter-container section-header-breadcrumb row justify-content-md-end">
                 <a href="{{ route('products.index') }}" class="btn btn-primary">Back</a>
             </div>

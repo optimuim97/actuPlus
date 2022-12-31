@@ -16,10 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/accueil', 301);
 Route::get('accueil', function(){
     return view('welcome');
-});
+})->middleware(['guest']);
+
+Route::redirect('/', '/accueil', 301);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('login/{role}', [FrontEndController::class, 'admin'])->name('admin');
@@ -53,3 +54,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('categories', App\Http\Controllers\CategoryController::class);
     
 });
+
+Route::resource('userLists', App\Http\Controllers\UserListController::class);

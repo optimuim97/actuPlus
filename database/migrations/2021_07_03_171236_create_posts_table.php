@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->bigInteger('user_id')->nullable();
             $table->string('title')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('publisher_name')->nullable();
             $table->bigInteger('publisher_id')->nullable();
             $table->boolean('is_publish')->default(1);
@@ -27,7 +27,7 @@ class CreatePostsTable extends Migration
             $table->boolean('is_visible_by_agent')->default(1);
             $table->date('expiration_date')->nullable();
             $table->text('medias')->nullable();
-            $table->text('cover')->nullable();
+            $table->text('cover')->default('https://i.imgur.com/f0W33fk.png');
             $table->boolean('is_draft')->nullable();
             $table->bigInteger('entity_id')->nullable();
             $table->timestamps();

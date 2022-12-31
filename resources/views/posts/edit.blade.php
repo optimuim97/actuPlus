@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('title')
-    Edit Post 
+    Modification| Publications 
 @endsection
 @section('content')
     <section class="section">
             <div class="section-header">
-                <h3 class="page__heading m-0">Edit Post</h3>
+                <h3 class="page__heading m-0">Modification| Publications</h3>
                 <div class="filter-container section-header-breadcrumb row justify-content-md-end">
                     <a href="{{ route('posts.index') }}"  class="btn btn-primary">Back</a>
                 </div>

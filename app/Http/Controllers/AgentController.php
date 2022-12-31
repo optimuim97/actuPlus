@@ -6,6 +6,7 @@ use App\Http\Requests\CreateAgentRequest;
 use App\Http\Requests\UpdateAgentRequest;
 use App\Repositories\AgentRepository;
 use App\Http\Controllers\AppBaseController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
@@ -61,21 +62,28 @@ class AgentController extends AppBaseController
             $image = $request->file('photo');
             $pictures = [];
             if ($image != null) {
-                // dd($image);
                 $productImage = Imgur::upload($image);
                 $productImageLink = $productImage->link();
             }
 
         } else {
-            $productImageLink = '';
+            $productImageLink = 'https://i.imgur.com/zCL2LAh.png';
         }
 
         $input["photo"] = $productImageLink;
         $input["password"] = \Illuminate\Support\Str::random(8);
 
+        User::create([
+            'name' =>  $input["name"],
+            'email' => $input["email"],
+            'image' => $input["image"] ?? "",
+            'password' => bcrypt($input["password"]) 
+        ]);
+        
+
         $agent = $this->agentRepository->create($input);
 
-        Flash::success('Agent saved successfully.');
+        Flash::success('Agent ajouté avec succès.');
 
         return redirect(route('agents.index'));
     }
@@ -136,6 +144,10 @@ class AgentController extends AppBaseController
             Flash::error('Agent not found');
 
             return redirect(route('agents.index'));
+        }
+
+        if($request->has('password')){
+            $request->password = bcrypt($request->password);
         }
 
         $agent = $this->agentRepository->update($request->all(), $id);

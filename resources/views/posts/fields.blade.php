@@ -6,15 +6,36 @@
 
 
 <!-- Is Draft Field -->
+@php
+    $user = Auth::user();
+    $user_type = $user->user_type;
+@endphp
+
 <div class="form-group col-sm-6">
-    {!! Form::label('entity_id', 'Type d\'entité :') !!}
+    {!! Form::label('entity_id', 'Entité :') !!}
     <select name="entity_id" id="entity_id" class="form-control">
-        <option value="">Choisir une entités si votre post est lié a une entité</option>
-        @foreach ($entities as $entity)
-            <option value="{{ $entity->id }}">{{ $entity->name }}</option>
-        @endforeach
+                <option 
+                    @if ($user_type == 'entity')
+                        @php
+                            $entity = \App\Models\Entity::where('email', $user->email)->first();
+                        @endphp
+                        value="{{ $entity->id }}"
+                    @else
+                        value=""
+                    @endif
+                >
+                    {{ $user_type == 'entity' ? $user->name  : 'Choisir une entités si votre post est lié a une entité'}}
+                </option>
+
+                @if ($user_type !='entity')
+                @foreach ($entities as $entity)
+                <option value="{{ $entity->id }}">
+                    {{ $entity->name }}
+                </option>   
+                @endforeach
+                @endif  
     </select>
-</div
+</div>
 
 
 <!-- description Field -->
@@ -68,10 +89,21 @@
 
 
 <!-- Cover Field -->
+
+
 <div class="form-group col-sm-6">
     {!! Form::label('cover', 'Image de couverture:') !!}
     {!! Form::file('cover') !!}
+
+    <div>
+        @isset($post)      
+            @if ($post->cover != null)
+                <img src="{{$post->cover}}" width="90" height="90" alt="{{$post->cover}}">
+            @endif
+        @endisset
+    </div>
 </div>
+
 <div class="clearfix"></div>
 
 <!-- Is Draft Field -->

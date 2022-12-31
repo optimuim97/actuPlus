@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
     <style>
       .card-counter{
         box-shadow: 2px 2px 10px #DADADA;
@@ -113,6 +113,14 @@
                                     <i class="fa fa-users"></i>
                                     <span class="count-numbers">{{ App\Models\Agent::count() }}</span>
                                     <span class="count-name">Nombre d'agents</span>
+                                  </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                  <div class="card-counter info">
+                                    <i class="fa fa-users"></i>
+                                    <span class="count-numbers">{{ App\Models\User::count() }}</span>
+                                    <span class="count-name">Nombre d'Utilisateurs</span>
                                   </div>
                                 </div>
                               </div>

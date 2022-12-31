@@ -11,11 +11,11 @@
                 method="POST" 
 
                 @if (isset($role))
-
+                    {{-- @dump($role) --}}
                     @if ($role == "admin")
                         action="{{ route('login') }}"
                     @else
-                        action="{{ url('login-entity') }}"
+                        action="{{ url('login-entity') }}" method="POST"
                     @endif
 
                 @else
@@ -74,7 +74,7 @@
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                        Login
+                        Se Connecter
                     </button>
                 </div>
             </form>

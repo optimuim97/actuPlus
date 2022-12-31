@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Entity;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -46,26 +47,37 @@ class LoginController extends Controller
 
     public function loginEntity(Request $request)
     {
+
+        // dd($request->all());
         $email = $request->email;
         $password = $request->password;
 
-        $entity = Entity::whereEmail($email)->first();
+        $user = User::where('email', $email)->first();
 
-        $passwordStored = $entity != null ? $entity->password : '';
+        // dd($user);
 
-        if (!empty($entity)) {
-            Auth::loginUsingId($entity->id);
+        if (empty($user)) {
+            redirect('/');
+        }
+
+        if (!empty($user)) {
+
+            $passwordStored = $user->password;
+
+            if (Hash::check($password, $passwordStored)) {
+                Flash::success('Bien éffectué !');
+                return redirect('home');
+            } else {
+                Flash::error('Les identifiants ne correspondent pas a nos enregistrements.');
+                return redirect('/');
+            }
+
+            Auth::loginUsingId($user->id);
         } else {
             Flash::success('Une erreur est survenue');
             return back();
         }
 
-        if (Hash::check($password, $passwordStored)) {
-            Flash::success('Bien éffectué !');
-            return redirect('home');
-        } else {
-            Flash::error('Les identifiants ne correspondent pas a nos enregistrements.');
-            return back();
-        }
+       
     }
 }

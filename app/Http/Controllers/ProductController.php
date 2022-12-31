@@ -70,6 +70,7 @@ class ProductController extends AppBaseController
         } else {
             $productImageLink = '';
         }
+
         $input["image_url"] = $productImageLink;
         $input["sku"] = Str::uuid() ;
 
@@ -130,6 +131,7 @@ class ProductController extends AppBaseController
      */
     public function update($id, UpdateProductRequest $request)
     {
+        $input = $request->all();
         $product = $this->productRepository->find($id);
 
         if (empty($product)) {
@@ -138,7 +140,23 @@ class ProductController extends AppBaseController
             return redirect(route('products.index'));
         }
 
-        $product = $this->productRepository->update($request->all(), $id);
+
+        if ($request->file('image_url')) {
+            $image = $request->file('image_url');
+            $pictures = [];
+            if ($image != null) {
+                // dd($image);
+                $productImage = Imgur::upload($image);
+                $productImageLink = $productImage->link();
+            }
+
+        } else {
+            $productImageLink = '';
+        }
+        
+        $input["image_url"] = $productImageLink;
+
+        $product = $this->productRepository->update($input, $id);
 
         Flash::success('Product updated successfully.');
 
