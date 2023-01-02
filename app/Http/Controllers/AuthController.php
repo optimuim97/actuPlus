@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Imgur;
@@ -53,7 +52,6 @@ class AuthController extends Controller
             "email" => 'required',
             "password" => 'required|min:6',
         ]);
-
         
         if (!Auth::attempt(
             [

@@ -36,6 +36,7 @@ class PostAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+
         $posts = $this->postRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
